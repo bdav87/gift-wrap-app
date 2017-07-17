@@ -23,7 +23,6 @@ router.get('/', function(req, res, next) {
 router.get('/auth', function(req, res) {
   bigCommerce.authorise(req.query, function(err, data){
     res.render('index', {data: data});
-    bigCommerce.access_token = data.access_token;
   })
 });
 
