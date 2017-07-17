@@ -32,7 +32,7 @@ router.get('/load', function(req, res, next) {
 });
 
 /* GET uninstall page. */
-router.get('/', function(req, res, next) {
+router.get('/uninstall', function(req, res, next) {
   res.send('Uninstall');
 });
 
