@@ -31,3 +31,6 @@ npm-debug.log
 
 # Prevent committing .DS_Store
 .DS_Store
+
+# Prevent committing local env vars
+.env
