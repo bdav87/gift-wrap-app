@@ -24,6 +24,7 @@ router.get('/auth', function(req, res) {
   bigCommerce.authorise(req.query, function(err, data){
     res.send(data);
     console.log("data: " + data);
+    res.sendFile(path.join(__dirname, '../views', 'index.html'));
   })
 });
 
