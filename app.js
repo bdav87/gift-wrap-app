@@ -7,7 +7,9 @@ var bodyParser = require('body-parser');
 var BigCommerce = require('node-bigcommerce');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var auth = require('./routes/auth');
+var load = require('./routes/load');
+var uninstall = require('./routes/uninstall');
 
 var app = express();
 
