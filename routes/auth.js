@@ -17,7 +17,7 @@ var bigCommerce = new BigCommerce({
 /* GET auth page. */
 router.get('/', function(req, res) {
   bigCommerce.authorise(req.query, function(err, data){
-    res.render('index', { title: 'Authorised!', data: data });
+    res.sendFile(path.join(__dirname, '../views', 'index.html'));
   })
 });
 
