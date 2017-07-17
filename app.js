@@ -12,8 +12,8 @@ var users = require('./routes/users');
 var app = express();
 
 var client = {
-  id = process.env.CLIENTID,
-  secret = process.env.SECRET
+  id: process.env.CLIENTID,
+  secret: process.env.SECRET
 };
 
 var bigCommerce = new BigCommerce({
