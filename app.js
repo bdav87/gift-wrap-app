@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var BigCommerce = require('node-bigcommerce');
 
 var index = require('./routes/index');
 var auth = require('./routes/auth');
@@ -13,18 +12,6 @@ var uninstall = require('./routes/uninstall');
 
 var app = express();
 
-var client = {
-  id: process.env.CLIENTID,
-  secret: process.env.SECRET
-};
-
-var bigCommerce = new BigCommerce({
-  logLevel: 'info',
-  clientId: client.id,
-  secret: client.secret,
-  callback: '/auth',
-  responseType: 'json'
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -60,5 +47,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
