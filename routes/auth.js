@@ -17,8 +17,7 @@ var bigCommerce = new BigCommerce({
 /* GET auth page. */
 router.get('/', function(req, res) {
   bigCommerce.authorise(req.query, function(err, data){
-    res.render('index', { title: 'Authorised!', data: clientId });
-    console.log("client id: " + process.env.CLIENTID);
+    res.render('index', { title: 'Authorised!', data: data });
   })
 });
 
