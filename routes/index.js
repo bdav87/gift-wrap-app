@@ -22,13 +22,16 @@ router.get('/', function(req, res, next) {
 /* GET auth page. */
 router.get('/auth', function(req, res) {
   bigCommerce.authorise(req.query, function(err, data){
-    res.render('index', {stuff: data});
+    res.render('index', {data: data});
+    bigCommerce.access_token = data.access_token;
   })
 });
 
 /* GET load page */
 router.get('/load', function(req, res, next) {
-  res.send('Load');
+  bigCommerce.callback(req.query['signed_payload'], function(err, data){
+    res.render('index', { title: 'Welcome!', data: data });
+  })
 });
 
 /* GET uninstall page. */
