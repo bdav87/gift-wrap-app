@@ -10,7 +10,7 @@ var bigCommerce = new BigCommerce({
   logLevel: 'info',
   clientId: clientId,
   secret: clientSecret,
-  callback: '/auth',
+  callback: 'https://gift-wrap-app.herokuapp.com/auth',
   responseType: 'json'
 });
 
