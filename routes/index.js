@@ -31,6 +31,8 @@ router.get('/auth', function(req, res) {
 /* GET load page */
 router.get('/load', function(req, res, next) {
   bigCommerce.callback(req.query['signed_payload'], function(err, data){
+    var stringRef = JSON.stringify(bigCommerce.config);
+    console.log("BC Config after Load: " + stringRef);
     res.render('index', { title: 'Welcome!', data: data });
   })
 });
