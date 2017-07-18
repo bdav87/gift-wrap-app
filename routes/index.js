@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
 /* GET auth page. */
 router.get('/auth', function(req, res) {
   bigCommerce.authorise(req.query, function(err, data){
-    console.log(bigCommerce.config);
+    console.log("BC Config: " + bigCommerce.config);
     res.render('index', {data: data});
   })
 });
