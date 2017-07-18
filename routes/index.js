@@ -23,7 +23,8 @@ router.get('/', function(req, res, next) {
 router.get('/auth', function(req, res) {
   bigCommerce.authorise(req.query, function(err, data){
     var stringRef = JSON.stringify(bigCommerce.config);
-    console.log("BC Config: " + stringRef);
+    var dataStringRef = JSON.stringify(data);
+    console.log("BC Config: " + stringRef + "\n" + "BC Data: " + dataStringRef);
     res.render('index', {data: data});
   })
 });
@@ -33,7 +34,7 @@ router.get('/load', function(req, res, next) {
   bigCommerce.callback(req.query['signed_payload'], function(err, data){
     var stringRef = JSON.stringify(bigCommerce.config);
     console.log("BC Config after Load: " + stringRef);
-    res.render('index', { title: 'Welcome!', data: data });
+    res.sendFile(path.join(__dirname, '../views', 'index.html'));
   })
 });
 
