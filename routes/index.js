@@ -69,7 +69,7 @@ console.log('from client: ' + JSON.stringify(req.body));
 var clientResponse = JSON.stringify(req.body.status_id);
 res.send(clientResponse);
 });
-
+/*
 router.get('/webhook', function(req,res) {
   bigCommerce.get('/hooks', function(err, data, response){
     res.send(data[0]);
@@ -78,7 +78,7 @@ router.get('/webhook', function(req,res) {
 router.post('/webhook', function(req,res) {
     res.send(req.body);
 });
-
+*/
 
 function setPreferredStatus(id){
   return order.status_id = id;
