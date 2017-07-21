@@ -34,6 +34,11 @@ router.get('/auth', function(req, res) {
 
     console.log('access token: ' + data.access_token);
     bigCommerce.access_token = data.access_token;
+    bigCommerce.scope = data.scope;
+    bigCommerce.user.id = data.user.id;
+    bigCommerce.user.username = data.user.username;
+    bigCommerce.user.email = data.user.email;
+    bigCommerce.context = data.context;
     checkWebHooks();
     res.sendFile(path.join(__dirname, '../views', 'index.html'));
   })
