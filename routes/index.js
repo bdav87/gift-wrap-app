@@ -47,6 +47,7 @@ router.get('/auth', function(req, res) {
 
 /* GET load page */
 router.get('/load', function(req, res, next) {
+  checkWebHooks();
   bigCommerce.callback(req.query['signed_payload'], function(err, data){
 
     console.log("BC Config after Load: " + checkBigConfig(bigCommerce.config));
@@ -76,13 +77,15 @@ function checkWebHooks(){
     console.log('access token is not defined in checkWebHooks')
     console.log('current bc config: ' + checkBigConfig(bigCommerce.config));
     return false;
+  } else {
+    bigCommerce.get('/hooks', function(err, data, response){
+      console.log('Checking existing hooks' + "\n" + "------------");
+      console.log('data: ' + data);
+      console.log('response: ' + response);
+      console.log('err: ' + err);
+    });
   }
-  bigCommerce.get('/hooks', function(err, data, response){
-    console.log('Checking existing hooks' + "\n" + "------------");
-    console.log('data: ' + data);
-    console.log('response: ' + response);
-    console.log('err: ' + err);
-  })
+  console.log('current bc config: ' + checkBigConfig(bigCommerce.config));
 }
 
 function checkBigConfig(config){
