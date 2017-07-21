@@ -139,18 +139,6 @@ function checkBigConfig(config){
   }()))
 }
 
-function checkPreferredStatus(){
-
-}
-
-function afterHook(orderId){
-  //Check if the order has gift wrapping
-  bigCommerce.get('/orders/' + orderId, function(err, data, response){
-    var dataCheck = JSON.stringify(data);
-    console.log('Result of GET of order: ' + '\n' + dataCheck);
-
-  });
-}
 
 function checkGiftWrap(orderId){
   bigCommerce.get('/orders/' + orderId + '/products', function(err, data, response){
