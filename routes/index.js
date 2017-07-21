@@ -53,7 +53,7 @@ router.get('/auth', function(req, res) {
 /* GET load page */
 router.get('/load', function(req, res, next) {
   checkWebHooks();
-  setPreferredStatus();
+
   checkBigConfig(bigCommerce.config);
   bigCommerce.callback(req.query['signed_payload'], function(err, data){
     console.log("BC Config after Load: " + checkBigConfig(bigCommerce));
