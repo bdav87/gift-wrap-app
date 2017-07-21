@@ -34,3 +34,11 @@ $('#checkHook').click(function(){
     $('#hook').text(JSON.stringify(res));
   });
 });
+
+$(function(){
+  $.get('/status').done(function(res){
+    $('#status').text('current status from server: '+ res);
+    $('#status-list option[value=' + res + ']').prop('selected', 'selected');
+    console.log(res);
+  })
+})

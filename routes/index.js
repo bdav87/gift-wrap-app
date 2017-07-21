@@ -69,8 +69,13 @@ router.get('/uninstall', function(req, res, next) {
 router.post('/status', function(req, res, next) {
 console.log('from client: ' + JSON.stringify(req.body));
 var clientResponse = JSON.stringify(req.body.status_id);
+preferredStatus = res.body.status_id;
 res.send(clientResponse);
 });
+
+router.get('/status', function(req,res) {
+  res.send(preferredStatus);
+})
 
 router.get('/webhook', function(req,res) {
   bigCommerce.get('/hooks', function(err, data, response){
@@ -86,7 +91,7 @@ router.post('/webhook', function(req,res) {
 */
 
 function setPreferredStatus(id){
-  res.send('test');
+  res.send(preferredStatus);
   return order.status_id = id;
 }
 
