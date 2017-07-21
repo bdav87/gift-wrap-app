@@ -83,10 +83,23 @@ function checkWebHooks(){
       console.log('response: ' + Object.keys(response));
       console.log('err: ' + err);
 
+      if (Object.keys(data).length < 1){
+        createHooks();
+      }
 
     });
 
   }
+
+function createHooks(){
+  var hook = {
+    scope: 'store/order/created',
+    destination: 'https://gift-wrap-app.herokuapp.com/'
+  }
+  bigCommerce.post('/hooks', hook, function(err, data, response) {
+    console.log('data returned: ' + Object.values(data));
+  })
+}
 
 
 function checkBigConfig(config){
