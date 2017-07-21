@@ -61,7 +61,7 @@ router.get('/uninstall', function(req, res, next) {
 });
 
 router.post('/status', function(req, res) {
-  //checkWebHooks();
+  checkWebHooks();
   checkBigConfig(bigCommerce.config);
   console.log('req: ' + req.body.status);
 
