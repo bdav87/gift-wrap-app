@@ -48,7 +48,7 @@ router.get('/auth', function(req, res) {
 
 /* GET load page */
 router.get('/load', function(req, res, next) {
-  //checkWebHooks();
+  checkWebHooks();
   checkBigConfig(bigCommerce.config);
   bigCommerce.callback(req.query['signed_payload'], function(err, data){
     console.log("BC Config after Load: " + checkBigConfig(bigCommerce));
@@ -63,7 +63,7 @@ router.get('/uninstall', function(req, res, next) {
 
 router.post('/status', function(req, res) {
   checkWebHooks();
-
+  checkBigConfig(req);
   console.log('req: ' + req.body.status);
 
   res.send('status updated to ' + req.body.status);
