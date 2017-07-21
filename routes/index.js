@@ -161,23 +161,24 @@ function checkGiftWrap(orderId){
     var numOfProducts = data.length;
 
     console.log('Unique products in order: ' + numOfProducts);
-
-    function checkForWrappedProducts(){
-      for(i = 0; i<numOfProducts; i++){
-        products.push(data[i].wrapping_name);
-      }
-
-      for(x = 0; x<products.length; x++){
-        //Did any of the products have a string in wrapping_name?
-        if (products[x].length > 1) {
-          console.log('pretty sure wrapping is there');
-          return updateOrderStatus(orderId);
-        }
-      }
-
-    }
+    checkForWrappedProducts(orderId);
 
   })
+}
+
+function checkForWrappedProducts(id){
+  for(i = 0; i<numOfProducts; i++){
+    products.push(data[i].wrapping_name);
+  }
+
+  for(x = 0; x<products.length; x++){
+    //Did any of the products have a string in wrapping_name?
+    if (products[x].length > 1) {
+      console.log('pretty sure wrapping is there');
+      return updateOrderStatus(id);
+    }
+  }
+
 }
 
 function updateOrderStatus(id){
