@@ -74,7 +74,7 @@ res.send(clientResponse);
 });
 
 router.get('/status', function(req,res) {
-  res.send(preferredStatus);
+  res.send(JSON.stringify(preferredStatus));
 })
 
 router.get('/webhook', function(req,res) {
