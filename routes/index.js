@@ -48,8 +48,8 @@ router.get('/auth', function(req, res) {
 /* GET load page */
 router.get('/load', function(req, res, next) {
   bigCommerce.callback(req.query['signed_payload'], function(err, data){
-    var stringRef = JSON.stringify(bigCommerce.config);
-    console.log("BC Config after Load: " + stringRef);
+
+    console.log("BC Config after Load: " + checkBigConfig(bigCommerce.config));
     res.sendFile(path.join(__dirname, '../views', 'index.html'));
   })
 });
@@ -72,12 +72,21 @@ function setPreferredStatus(id){
 }
 
 function checkWebHooks(){
+  if (!bigCommerce.access_token) {
+    console.log('access token is not defined in checkWebHooks')
+    console.log('current bc config: ' + checkBigConfig(bigCommerce.config));
+    return false;
+  }
   bigCommerce.get('/hooks', function(err, data, response){
     console.log('Checking existing hooks' + "\n" + "------------");
     console.log('data: ' + data);
     console.log('response: ' + response);
     console.log('err: ' + err);
   })
+}
+
+function checkBigConfig(config){
+  return JSON.stringify(config);
 }
 
 module.exports = router;
