@@ -35,7 +35,8 @@ router.get('/auth', function(req, res) {
     console.log("BC Config: " + stringRef + "\n" + "BC Data: " + dataStringRef);
 
     console.log('access token: ' + data.access_token);
-    accessToken = data.access_token;
+    bigCommerce.config.access_token = data.access_token;
+
 
 
     //checkWebHooks();
@@ -49,7 +50,7 @@ router.get('/load', function(req, res, next) {
   //checkWebHooks();
   checkBigConfig(bigCommerce.config);
   bigCommerce.callback(req.query['signed_payload'], function(err, data){
-    bigCommerce.store_hash = data.store_hash;
+    bigCommerce.config.store_hash = data.store_hash;
     console.log("BC Config after Load: " + checkBigConfig(bigCommerce));
     res.sendFile(path.join(__dirname, '../views', 'index.html'));
   })
@@ -62,7 +63,7 @@ router.get('/uninstall', function(req, res, next) {
 
 router.post('/status', function(req, res) {
   checkWebHooks();
-  checkBigConfig(bigCommerce.config);
+
   console.log('req: ' + req.body.status);
 
   res.send('status updated to ' + req.body.status);
@@ -74,11 +75,7 @@ function setPreferredStatus(id){
 }
 
 function checkWebHooks(){
-    var bigCommerce = new BigCommerce({
-        clientId: clientId,
-        accessToken: accessToken,
-        responseType: 'json'
-});
+
     bigCommerce.get('/hooks', function(err, data, response){
       console.log('Checking existing hooks' + "\n" + "------------");
       console.log('data: ' + data);
