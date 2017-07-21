@@ -43,7 +43,7 @@ router.get('/auth', function(req, res) {
     bigCommerce.config.storeHash = storeHash(data.context);
 
 
-    //checkWebHooks();
+    checkWebHooks();
     checkBigConfig(bigCommerce);
     res.sendFile(path.join(__dirname, '../views', 'index.html'));
   })
@@ -70,8 +70,13 @@ var clientResponse = JSON.stringify(req.body.status_id);
 res.send(clientResponse);
 });
 
-router.post('/webhook', function(req,res) {
+router.get('/webhook', function(req,res) {
+  bigCommerce.get('/hooks', function(err, data, response){
+    res.send(data[0]);
+});
 
+router.post('/webhook', function(req,res) {
+    res.send(req.body);
 });
 
 
