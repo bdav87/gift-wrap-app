@@ -156,7 +156,40 @@ function checkGiftWrap(orderId){
   bigCommerce.get('/orders/' + orderId + '/products', function(err, data, response){
     var checkIt = JSON.stringify(data);
     console.log('Order products: ' + '\n' + checkIt);
+    //Need to check all products in order to see if gift wrapping has been applied
+    var products = [];
+    var numOfProducts = data.length;
+
+    console.log('Unique products in order: ' + numOfProducts);
+
+    function checkForWrappedProducts(){
+      for(i = 0; i<numOfProducts; i++){
+        products.push(data[i].wrapping_name);
+      }
+
+      for(x = 0; x<products.length; x++){
+        //Did any of the products have a string in wrapping_name?
+        if (products[x].length > 1) {
+          console.log('pretty sure wrapping is there');
+          return updateOrderStatus(orderId);
+        }
+      }
+
+    }
+
   })
+}
+
+function updateOrderStatus(id){
+  var statId = {status_id: preferredStatus};
+  bigCommerce.put('/orders/' + id, statId, function(err, data, response){
+    if (err) {
+      console.log('Dang, error: ' + err);
+    }
+    console.log('data: ' + data);
+    console.log('response: ' + response);
+  })
+
 }
 
 module.exports = router;
