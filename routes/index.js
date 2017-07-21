@@ -69,7 +69,7 @@ router.get('/uninstall', function(req, res, next) {
 router.post('/status', function(req, res, next) {
 console.log('from client: ' + JSON.stringify(req.body));
 var clientResponse = JSON.stringify(req.body.status_id);
-preferredStatus = res.body.status_id;
+preferredStatus = req.body.status_id;
 console.log(preferredStatus);
 res.send(clientResponse);
 });
