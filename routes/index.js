@@ -97,7 +97,7 @@ function createHooks(){
     destination: 'https://gift-wrap-app.herokuapp.com/'
   }
   bigCommerce.post('/hooks', hook, function(err, data, response) {
-    console.log('data returned: ' + Object.values(data));
+    console.log('data returned: ' + Object.keys(data));
   })
 }
 
