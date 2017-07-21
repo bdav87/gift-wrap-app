@@ -79,10 +79,11 @@ function checkWebHooks(){
     bigCommerce.get('/hooks', function(err, data, response){
 
       console.log('Checking existing hooks' + "\n" + "------------");
-      console.log('data: ' + data);
+      console.log('data: ' + checkBigConfig(data));
       console.log('response: ' + response);
       console.log('err: ' + err);
-      console.log('current bc config: ' + checkBigConfig(bigCommerce));
+
+
     });
 
   }
