@@ -14,7 +14,7 @@ var clientSecret = process.env.SECRET;
 var storeHash = function(str){
   return str.split('/')[1];
 };
-var hookCreated=false;
+var hookCreated;
 
 var bigCommerce = new BigCommerce({
   logLevel: 'info',
@@ -88,7 +88,7 @@ function checkWebHooks(){
       console.log('response: ' + Object.keys(response));
       console.log('err: ' + err);
 
-      if (!hookCreated){
+      if (!hookCreated || data[0].length < 1){
         createHooks();
       } else {
         console.log(data[0]);
