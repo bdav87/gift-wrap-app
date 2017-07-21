@@ -1,8 +1,8 @@
 $('#status-list').change(function(){
-
+  var data = JSON.stringify({status: this.value});
   $.ajax({
     url: '/status',
-    data: {status: this.value},
+    data: data,
     method: 'POST',
     headers: {
       "accept": "application/json",
