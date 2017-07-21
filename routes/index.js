@@ -9,6 +9,8 @@ router.use(bodyParser.urlencoded({ extended: true })); // for parsing applicatio
 
 var clientId = process.env.CLIENTID;
 var clientSecret = process.env.SECRET;
+var accessToken;
+var storeHash;
 
 var bigCommerce = new BigCommerce({
   logLevel: 'info',
@@ -34,12 +36,8 @@ router.get('/auth', function(req, res) {
 
     console.log('access token: ' + data.access_token);
     bigCommerce.access_token = data.access_token;
-    bigCommerce.scope = data.scope;
-    bigCommerce.user = {};
-    bigCommerce.user.id = data.user.id;
-    bigCommerce.user.username = data.user.username;
-    bigCommerce.user.email = data.user.email;
-    bigCommerce.storeHash = data.context;
+
+
     //checkWebHooks();
     checkBigConfig(bigCommerce);
     res.sendFile(path.join(__dirname, '../views', 'index.html'));
@@ -51,8 +49,8 @@ router.get('/load', function(req, res, next) {
   //checkWebHooks();
   checkBigConfig(bigCommerce.config);
   bigCommerce.callback(req.query['signed_payload'], function(err, data){
-
-    console.log("BC Config after Load: " + checkBigConfig(bigCommerce.config));
+    bigCommerce.store_hash = data.store_hash;
+    console.log("BC Config after Load: " + checkBigConfig(bigCommerce));
     res.sendFile(path.join(__dirname, '../views', 'index.html'));
   })
 });
@@ -78,7 +76,7 @@ function setPreferredStatus(id){
 function checkWebHooks(){
   if (!bigCommerce.access_token) {
     console.log('access token is not defined in checkWebHooks')
-    console.log('current bc config: ' + checkBigConfig(bigCommerce.config));
+    console.log('current bc config: ' + checkBigConfig(bigCommerce));
     return false;
   } else {
     bigCommerce.get('/hooks', function(err, data, response){

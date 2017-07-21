@@ -9,9 +9,8 @@ $('#status-list').change(function(){
       "content-type": "json"
     },
     success: function(data){
-      //$('#responseCheck').text('ok' + res);
-      alert('worked');
+      $('#responseCheck').text('ok' + res);
     },
-    error: function(){alert('whyyyyyyy');}
+    error: function(){console.log('whyyyyyyy');}
   })
 });
