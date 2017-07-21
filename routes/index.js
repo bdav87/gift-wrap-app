@@ -63,7 +63,7 @@ router.get('/uninstall', function(req, res, next) {
 
 router.post('/status', function(req, res) {
   checkWebHooks();
-  checkBigConfig(req);
+
   console.log('req: ' + req.body.status);
 
   res.send('status updated to ' + req.body.status);
