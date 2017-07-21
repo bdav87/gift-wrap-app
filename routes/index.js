@@ -92,9 +92,10 @@ function checkWebHooks(){
 }
 
 function checkBigConfig(config){
-  console.log('current BC config object: ' + function(){
+
+  console.log('current BC config object: ' + (function(){
     return JSON.stringify(config);
-  })
+  }()))
 }
 
 module.exports = router;
