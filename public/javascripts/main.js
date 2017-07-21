@@ -36,9 +36,10 @@ $('#checkHook').click(function(){
   });
 });
 
-$(function(){
+$(document).ready(function(){
   checkStatus();
-})
+  $('#responseCheck').text('Orders with gift wrapping will change to status: '  + statuses[resTest]);
+});
 
 function checkStatus(){
   $.get('/status').done(function(res){
