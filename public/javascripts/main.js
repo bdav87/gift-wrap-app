@@ -31,6 +31,6 @@ $('#status-list').change(function(){
 
 $('#checkHook').click(function(){
   $.get('/webhook').done(function(res){
-    $('#hook').text(res);
+    $('#hook').text(JSON.stringify(res));
   });
 });
