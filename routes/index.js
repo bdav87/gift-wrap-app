@@ -77,10 +77,10 @@ function setPreferredStatus(id){
 function checkWebHooks(){
 
     bigCommerce.get('/hooks', function(err, data, response){
-      var strResponse = JSON.stringify(response);
+
       console.log('Checking existing hooks' + "\n" + "------------");
       console.log('data: ' + data);
-      console.log('response: ' + strResponse);
+      console.log('response: ' + response);
       console.log('err: ' + err);
       console.log('current bc config: ' + checkBigConfig(bigCommerce));
     });
