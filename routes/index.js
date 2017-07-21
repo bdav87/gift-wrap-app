@@ -74,6 +74,8 @@ router.get('/webhook', function(req,res) {
   bigCommerce.get('/hooks', function(err, data, response){
     console.log("gethook data: " + data);
     res.send('test');
+    });
+    
 });
 /*
 router.post('/webhook', function(req,res) {
