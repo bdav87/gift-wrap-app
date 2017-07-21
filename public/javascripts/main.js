@@ -42,7 +42,8 @@ $(function(){
 
 function checkStatus(){
   $.get('/status').done(function(res){
-    $('#status').text('current status from server: '+ res);
+    var id = JSON.parse(res);
+    $('#status').text('current status from server: '+ statuses[id]);
     $('#status-list option[value=' + res + ']').prop('selected', 'selected');
     console.log(res);
   })
