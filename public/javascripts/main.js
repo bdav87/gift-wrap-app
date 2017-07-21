@@ -26,6 +26,7 @@ $('#status-list').change(function(){
       $('#responseCheck').text('Orders with gift wrapping will change to status: '  + statuses[resTest]);
     }
   );
+  checkStatus();
 
 });
 
@@ -36,9 +37,13 @@ $('#checkHook').click(function(){
 });
 
 $(function(){
+  checkStatus();
+})
+
+function checkStatus(){
   $.get('/status').done(function(res){
     $('#status').text('current status from server: '+ res);
     $('#status-list option[value=' + res + ']').prop('selected', 'selected');
     console.log(res);
   })
-})
+}
