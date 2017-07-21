@@ -25,6 +25,7 @@ var bigCommerce = new BigCommerce({
 });
 
 var order = {};
+var preferredStatus = 1;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -52,6 +53,7 @@ router.get('/auth', function(req, res) {
 /* GET load page */
 router.get('/load', function(req, res, next) {
   checkWebHooks();
+  setPreferredStatus();
   checkBigConfig(bigCommerce.config);
   bigCommerce.callback(req.query['signed_payload'], function(err, data){
     console.log("BC Config after Load: " + checkBigConfig(bigCommerce));
@@ -84,6 +86,7 @@ router.post('/webhook', function(req,res) {
 */
 
 function setPreferredStatus(id){
+  res.send('test');
   return order.status_id = id;
 }
 
@@ -124,6 +127,10 @@ function checkBigConfig(config){
   console.log('current BC config object: ' + (function(){
     return JSON.stringify(config);
   }()))
+}
+
+function checkPreferredStatus(){
+
 }
 
 module.exports = router;
