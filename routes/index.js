@@ -161,12 +161,12 @@ function checkGiftWrap(orderId){
     var numOfProducts = data.length;
 
     console.log('Unique products in order: ' + numOfProducts);
-    checkForWrappedProducts(orderId, numOfProducts);
+    checkForWrappedProducts(orderId, numOfProducts, data);
 
   })
 }
 
-function checkForWrappedProducts(id, count){
+function checkForWrappedProducts(id, count, data){
   var products = [];
   for(i = 0; i<count; i++){
     products.push(data[i].wrapping_name);
