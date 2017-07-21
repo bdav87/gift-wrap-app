@@ -39,9 +39,9 @@ router.get('/auth', function(req, res) {
     bigCommerce.user.id = data.user.id;
     bigCommerce.user.username = data.user.username;
     bigCommerce.user.email = data.user.email;
-    bigCommerce.context = data.context;
+    bigCommerce.storeHash = data.context;
     //checkWebHooks();
-    checkBigConfig(bigCommerce.config);
+    checkBigConfig(bigCommerce);
     res.sendFile(path.join(__dirname, '../views', 'index.html'));
   })
 });
