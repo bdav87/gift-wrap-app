@@ -157,17 +157,18 @@ function checkGiftWrap(orderId){
     var checkIt = JSON.stringify(data);
     console.log('Order products: ' + '\n' + checkIt);
     //Need to check all products in order to see if gift wrapping has been applied
-    var products = [];
+
     var numOfProducts = data.length;
 
     console.log('Unique products in order: ' + numOfProducts);
-    checkForWrappedProducts(orderId);
+    checkForWrappedProducts(orderId, numOfProducts);
 
   })
 }
 
-function checkForWrappedProducts(id){
-  for(i = 0; i<numOfProducts; i++){
+function checkForWrappedProducts(id, count){
+  var products = [];
+  for(i = 0; i<count; i++){
     products.push(data[i].wrapping_name);
   }
 
