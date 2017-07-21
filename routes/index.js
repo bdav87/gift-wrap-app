@@ -84,10 +84,11 @@ function checkWebHooks(){
       console.log('data: ' + data);
       console.log('response: ' + response);
       console.log('err: ' + err);
+      console.log('current bc config: ' + checkBigConfig(bigCommerce));
     });
+
   }
-  console.log('current bc config: ' + checkBigConfig(bigCommerce));
-}
+
 
 function checkBigConfig(config){
 
