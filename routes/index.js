@@ -35,7 +35,7 @@ router.get('/auth', function(req, res) {
     console.log("BC Config: " + stringRef + "\n" + "BC Data: " + dataStringRef);
 
     console.log('access token: ' + data.access_token);
-    bigCommerce.access_token = data.access_token;
+    accessToken = data.access_token;
 
 
     //checkWebHooks();
@@ -74,11 +74,11 @@ function setPreferredStatus(id){
 }
 
 function checkWebHooks(){
-  if (!bigCommerce.access_token) {
-    console.log('access token is not defined in checkWebHooks')
-    console.log('current bc config: ' + checkBigConfig(bigCommerce));
-    return false;
-  } else {
+    var bigCommerce = new BigCommerce({
+        clientId: clientId,
+        accessToken: accessToken,
+        responseType: 'json'
+});
     bigCommerce.get('/hooks', function(err, data, response){
       console.log('Checking existing hooks' + "\n" + "------------");
       console.log('data: ' + data);
@@ -86,7 +86,7 @@ function checkWebHooks(){
       console.log('err: ' + err);
     });
   }
-  console.log('current bc config: ' + checkBigConfig(bigCommerce.config));
+  console.log('current bc config: ' + checkBigConfig(bigCommerce));
 }
 
 function checkBigConfig(config){
