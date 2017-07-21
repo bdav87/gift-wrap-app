@@ -90,7 +90,7 @@ router.post('/webhook', function(req,res) {
     var hookCheck = JSON.stringify(req.body);
     console.log('Hook Fired: ' + '\n' + hookCheck);
     var orderToUpdate = req.body.data.id;
-    afterHook(orderToUpdate);
+    checkGiftWrap(orderToUpdate);
     res.send();
 });
 
@@ -148,7 +148,15 @@ function afterHook(orderId){
   bigCommerce.get('/orders/' + orderId, function(err, data, response){
     var dataCheck = JSON.stringify(data);
     console.log('Result of GET of order: ' + '\n' + dataCheck);
+
   });
+}
+
+function checkGiftWrap(orderId){
+  bigCommerce.get('/orders/' + orderId + '/products', function(err, data, response){
+    var checkIt = JSON.stringify(data);
+    console.log('Order products: ' + '\n' + checkIt);
+  })
 }
 
 module.exports = router;
