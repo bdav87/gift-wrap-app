@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang='en'>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta charset='utf-8'>
+        <meta http-equiv='x-ua-compatible' content='ie=edge'>
         <title>Gifto - automatically update gift wrapped orders</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <meta name='description' content=''>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
 
 
 
@@ -14,19 +14,45 @@
     <body>
 
       <div class='container'>
-        <h1>Gifto</h1>
+        <div class='row'>
+        <h1>Gift Wrap Status App</h1>
+      </div>
       </div>
 
       <div class='container' containerOpen>
         <div class='row'>
-          <div class='col-md-6'>
-            Lorem Ipsum
+          <div class='form-group'>
+            <form>
+              <label for='status-list'>Select an order status</label>
+              <select class='form-control' id='status-list'>
+                <option value='0'>Incomplete</option>
+                <option value='1'>Pending</option>
+                <option value='2'>Shipped</option>
+                <option value='3'>Partially Shipped</option>
+                <option value='4'>Refunded</option>
+                <option value='5'>Cancelled</option>
+                <option value='6'>Declined</option>
+                <option value='7'>Awaiting Payment</option>
+                <option value='8'>Awaiting Pickup</option>
+                <option value='9'>Pending</option>
+                <option value='10'>Awaiting Shipment</option>
+                <option value='11'>Completed</option>
+                <option value='12'>Awaiting Fulfillment</option>
+                <option value='13'>Manual Verification Required</option>
+                <option value='14'>Disputed</option>
+                <option value='15'>Partially Refunded</option>
+              </select>
+            </form>
           </div>
         </div>
+        <div class='col-md-6'>
+          <p id='responseCheck'></p>
+        </div>
       </div containerClose>
-      <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <script src='https://code.jquery.com/jquery-3.2.1.min.js'
+      integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='
+      crossorigin='anonymous'></script>
+      <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>
+      <script src='../javascripts/main.js'>></script>
     </body>
 </html>
