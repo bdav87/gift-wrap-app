@@ -3,7 +3,9 @@ var router = express.Router();
 var path = require('path');
 var BigCommerce = require('node-bigcommerce');
 var bodyParser = require('body-parser');
+var http = require('http');
 
+router.use(express.static(path.join(__dirname, 'public')));
 router.use(bodyParser.json()); // for parsing application/json
 router.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -12,6 +14,7 @@ var clientSecret = process.env.SECRET;
 var storeHash = function(str){
   return str.split('/')[1];
 };
+var hookCreated;
 
 var bigCommerce = new BigCommerce({
   logLevel: 'info',
@@ -61,13 +64,11 @@ router.get('/uninstall', function(req, res, next) {
   res.send('Uninstall');
 });
 
-router.post('/status', function(req, res) {
-  checkWebHooks();
-
-  console.log('req: ' + req.status);
-
-  res.send('status updated to ' + req.body.status);
-})
+router.post('/status', function(req, res, next) {
+console.log('from client: ' + JSON.stringify(req.body));
+var clientResponse = JSON.stringify(req.body.status_id);
+res.send(clientResponse);
+});
 
 
 function setPreferredStatus(id){
@@ -83,7 +84,7 @@ function checkWebHooks(){
       console.log('response: ' + Object.keys(response));
       console.log('err: ' + err);
 
-      if (Object.keys(data).length < 1){
+      if (!hookCreated){
         createHooks();
       } else {
         console.log(data[0]);
@@ -100,6 +101,7 @@ function createHooks(){
   }
   bigCommerce.post('/hooks', hook, function(err, data, response) {
     console.log('data returned: ' + Object.keys(data));
+    hookCreated = true;
     checkBigConfig(data);
   })
 }
