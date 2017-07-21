@@ -9,7 +9,7 @@ $('#status-list').change(function(){
       "content-type": "json"
     },
     success: function(data){
-      $('#responseCheck').text('ok' + JSON.stringify(res));
+      $('#responseCheck').text('ok' + JSON.stringify(data));
     },
     error: function(){console.log('whyyyyyyy');}
   })

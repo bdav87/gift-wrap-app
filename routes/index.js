@@ -80,7 +80,7 @@ function checkWebHooks(){
 
       console.log('Checking existing hooks' + "\n" + "------------");
       console.log('data: ' + checkBigConfig(data));
-      console.log('response: ' + response);
+      console.log('response: ' + Object.keys(response));
       console.log('err: ' + err);
 
 
