@@ -40,14 +40,16 @@ router.get('/auth', function(req, res) {
     bigCommerce.user.username = data.user.username;
     bigCommerce.user.email = data.user.email;
     bigCommerce.context = data.context;
-    checkWebHooks();
+    //checkWebHooks();
+    checkBigConfig(bigCommerce.config);
     res.sendFile(path.join(__dirname, '../views', 'index.html'));
   })
 });
 
 /* GET load page */
 router.get('/load', function(req, res, next) {
-  checkWebHooks();
+  //checkWebHooks();
+  checkBigConfig(bigCommerce.config);
   bigCommerce.callback(req.query['signed_payload'], function(err, data){
 
     console.log("BC Config after Load: " + checkBigConfig(bigCommerce.config));
@@ -61,7 +63,8 @@ router.get('/uninstall', function(req, res, next) {
 });
 
 router.post('/status', function(req, res) {
-  checkWebHooks();
+  //checkWebHooks();
+  checkBigConfig(bigCommerce.config);
   console.log('req: ' + req.body.status);
 
   res.send('status updated to ' + req.body.status);
@@ -89,7 +92,9 @@ function checkWebHooks(){
 }
 
 function checkBigConfig(config){
-  return JSON.stringify(config);
+  console.log('current BC config object: ' + function(){
+    return JSON.stringify(config);
+  })
 }
 
 module.exports = router;
