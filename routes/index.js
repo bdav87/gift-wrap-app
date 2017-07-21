@@ -9,8 +9,9 @@ router.use(bodyParser.urlencoded({ extended: true })); // for parsing applicatio
 
 var clientId = process.env.CLIENTID;
 var clientSecret = process.env.SECRET;
-var accessToken;
-var storeHash;
+var storeHash = function(str){
+  return str.split('/')[1];
+};
 
 var bigCommerce = new BigCommerce({
   logLevel: 'info',
@@ -36,7 +37,7 @@ router.get('/auth', function(req, res) {
 
     console.log('access token: ' + data.access_token);
     bigCommerce.config.access_token = data.access_token;
-
+    bigCommerce.config.store_hash = storeHash(data.context);
 
 
     //checkWebHooks();
