@@ -85,6 +85,8 @@ function checkWebHooks(){
 
       if (Object.keys(data).length < 1){
         createHooks();
+      } else {
+        console.log(data[0]);
       }
 
     });
@@ -98,6 +100,7 @@ function createHooks(){
   }
   bigCommerce.post('/hooks', hook, function(err, data, response) {
     console.log('data returned: ' + Object.keys(data));
+    checkBigConfig(data);
   })
 }
 
