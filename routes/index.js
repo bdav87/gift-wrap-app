@@ -85,11 +85,13 @@ router.get('/webhook', function(req,res) {
     });
 
 });
-/*
+
 router.post('/webhook', function(req,res) {
+    var hookCheck = JSON.stringify(req.body);
+    console.log('Hook Fired: ' + '\n' + hookCheck);
     res.send(req.body);
 });
-*/
+
 
 function setPreferredStatus(id){
   res.send(preferredStatus);
