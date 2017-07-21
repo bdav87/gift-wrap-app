@@ -69,12 +69,13 @@ console.log('from client: ' + JSON.stringify(req.body));
 var clientResponse = JSON.stringify(req.body.status_id);
 res.send(clientResponse);
 });
-/*
+
 router.get('/webhook', function(req,res) {
   bigCommerce.get('/hooks', function(err, data, response){
+    console.log("gethook data: " + data)
     res.send(data[0]);
 });
-
+/*
 router.post('/webhook', function(req,res) {
     res.send(req.body);
 });
