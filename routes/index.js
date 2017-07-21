@@ -14,7 +14,7 @@ var clientSecret = process.env.SECRET;
 var storeHash = function(str){
   return str.split('/')[1];
 };
-var hookCreated;
+var hookCreated=false;
 
 var bigCommerce = new BigCommerce({
   logLevel: 'info',
@@ -70,6 +70,10 @@ var clientResponse = JSON.stringify(req.body.status_id);
 res.send(clientResponse);
 });
 
+router.post('/webhook', function(req,res) {
+
+});
+
 
 function setPreferredStatus(id){
   return order.status_id = id;
@@ -97,7 +101,7 @@ function checkWebHooks(){
 function createHooks(){
   var hook = {
     scope: 'store/order/created',
-    destination: 'https://gift-wrap-app.herokuapp.com/'
+    destination: 'https://gift-wrap-app.herokuapp.com/webhook'
   }
   bigCommerce.post('/hooks', hook, function(err, data, response) {
     console.log('data returned: ' + Object.keys(data));
