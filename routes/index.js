@@ -89,7 +89,9 @@ router.get('/webhook', function(req,res) {
 router.post('/webhook', function(req,res) {
     var hookCheck = JSON.stringify(req.body);
     console.log('Hook Fired: ' + '\n' + hookCheck);
-    res.send(req.body);
+    var orderToUpdate = req.body.data.id;
+    afterHook(orderToUpdate);
+    res.send();
 });
 
 
@@ -139,6 +141,14 @@ function checkBigConfig(config){
 
 function checkPreferredStatus(){
 
+}
+
+function afterHook(orderId){
+  //Check if the order has gift wrapping
+  bigCommerce.get('/orders/' + orderId, function(err, data, response){
+    var dataCheck = JSON.stringify(data);
+    console.log('Result of GET of order: ' + '\n' + dataCheck);
+  });
 }
 
 module.exports = router;
