@@ -31,6 +31,9 @@ router.get('/auth', function(req, res) {
     var stringRef = JSON.stringify(bigCommerce.config);
     var dataStringRef = JSON.stringify(data);
     console.log("BC Config: " + stringRef + "\n" + "BC Data: " + dataStringRef);
+
+    console.log('access token: ' + data.access_token);
+    bigCommerce.access_token = data.access_token;
     checkWebHooks();
     res.sendFile(path.join(__dirname, '../views', 'index.html'));
   })
